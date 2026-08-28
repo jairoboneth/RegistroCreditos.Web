@@ -33,9 +33,20 @@ export class LoginComponent {
           this.router.navigate(['/registro']);
         },
         error: (err) => {
+          let errorMessage = 'Usuario o contraseña incorrectos.';
+          if (err.status === 0) {
+            errorMessage = 'No hay conexión con el servidor. Verifica el CORS en Railway o tu conexión a internet.';
+          } else if (err.status === 404) {
+            errorMessage = 'Ruta del servidor no encontrada (Error 404). Verifica la URL de la API.';
+          } else if (err.error && typeof err.error === 'string') {
+            errorMessage = err.error;
+          } else if (err.message) {
+            errorMessage = err.message;
+          }
+          
           Swal.fire({
             title: 'Acceso Denegado',
-            text: 'Usuario o contraseña incorrectos.',
+            text: errorMessage,
             icon: 'error',
             confirmButtonColor: '#ef4444'
           });

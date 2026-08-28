@@ -3,7 +3,7 @@ const path = require('path');
 
 // Leer la variable de entorno API_URL (inyectada por Vercel o GitHub Actions)
 // Si no existe, usamos una URL de respaldo para que no falle la compilación.
-const apiUrl = process.env.API_URL || 'https://tu-backend-en-railway.up.railway.app/api';
+const apiUrl = process.env.API_URL || 'https://registrocreditosapi-production.up.railway.app/api';
 
 const envConfigFile = `export const environment = {
   production: true,
