@@ -28,7 +28,7 @@ Antes de ejecutar este proyecto localmente, asegúrate de tener instalado:
 
 1. **Clonar el repositorio:**
    ```bash
-   git clone <URL_DEL_REPOSITORIO>
+   git clone [<URL_DEL_REPOSITORIO>](https://github.com/jairoboneth/RegistroCreditos.Web.git)
    cd RegistroCredito.Web
    ```
 
