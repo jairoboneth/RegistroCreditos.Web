@@ -1,0 +1,41 @@
+<div class="min-h-screen flex items-center justify-center p-4 font-sans bg-surface-light relative overflow-hidden">
+  
+  <div class="w-full max-w-md bg-white rounded-3xl shadow-xl p-10 border border-slate-100 relative z-10">
+    <div class="text-center mb-10">
+      <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-brand-50 text-brand-600 mb-4 shadow-sm border border-brand-100">
+        <mat-icon class="scale-150">account_balance</mat-icon>
+      </div>
+      <h1 class="text-3xl font-extrabold tracking-tight text-slate-800">
+        Bienvenido a <span class="text-brand-600">Fya</span>
+      </h1>
+      <p class="text-slate-500 mt-2 font-medium">Ingresa tus credenciales para continuar</p>
+    </div>
+
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="flex flex-col gap-4">
+      <mat-form-field appearance="outline" class="w-full">
+        <mat-label>Correo Electrónico</mat-label>
+        <mat-icon matPrefix class="text-slate-400">email</mat-icon>
+        <input matInput type="email" formControlName="email" placeholder="ejemplo@empresa.com">
+        @if (loginForm.get('email')?.hasError('required')) {
+          <mat-error>El correo es obligatorio</mat-error>
+        }
+        @if (loginForm.get('email')?.hasError('email')) {
+          <mat-error>El formato es inválido</mat-error>
+        }
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="w-full">
+        <mat-label>Contraseña</mat-label>
+        <mat-icon matPrefix class="text-slate-400">lock</mat-icon>
+        <input matInput type="password" formControlName="password" placeholder="••••••••">
+        @if (loginForm.get('password')?.hasError('required')) {
+          <mat-error>La contraseña es obligatoria</mat-error>
+        }
+      </mat-form-field>
+
+      <button mat-flat-button color="primary" type="submit" [disabled]="loginForm.invalid" class="w-full h-14 text-lg font-bold mt-4 shadow-lg shadow-brand-500/30 rounded-xl">
+        Ingresar al Sistema
+      </button>
+    </form>
+  </div>
+</div>

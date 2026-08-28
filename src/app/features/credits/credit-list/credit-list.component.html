@@ -1,0 +1,111 @@
+<div class="mx-auto max-w-7xl">
+  
+  <div class="mb-8 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+    <div>
+      <h1 class="text-3xl font-extrabold text-slate-800 tracking-tight">Directorio de Créditos</h1>
+      <p class="text-slate-500 mt-1">Gestione y visualice la cartera de créditos registrados.</p>
+    </div>
+    
+    <mat-form-field appearance="outline" class="w-full sm:w-80 m-0 bg-white rounded-xl shadow-sm">
+      <mat-label>Buscar crédito...</mat-label>
+      <mat-icon matPrefix class="text-brand-600">search</mat-icon>
+      <input matInput (keyup)="aplicarFiltro($event)" placeholder="Ej. Juan, 123456...">
+    </mat-form-field>
+  </div>
+
+  <div class="custom-table-container">
+    <div class="overflow-x-auto">
+      <table mat-table [dataSource]="dataSource" matSort class="w-full">
+
+        <!-- Fecha -->
+        <ng-container matColumnDef="fechaRegistro">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Fecha </th>
+          <td mat-cell *matCellDef="let element" class="whitespace-nowrap"> 
+            <div class="flex flex-col">
+              <span class="font-medium text-slate-800">{{element.fechaRegistro | date:'mediumDate'}}</span>
+              <span class="text-xs text-slate-400">{{element.fechaRegistro | date:'shortTime'}}</span>
+            </div>
+          </td>
+        </ng-container>
+
+        <!-- Cliente -->
+        <ng-container matColumnDef="nombreCliente">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Cliente </th>
+          <td mat-cell *matCellDef="let element">
+            <div class="flex items-center gap-3">
+              <div class="h-10 w-10 rounded-full bg-brand-50 flex items-center justify-center text-brand-700 font-bold border border-brand-200">
+                {{element.nombreCliente.charAt(0) | uppercase}}
+              </div>
+              <span class="font-bold text-slate-700"> {{element.nombreCliente}} </span>
+            </div>
+          </td>
+        </ng-container>
+
+        <!-- Cédula -->
+        <ng-container matColumnDef="cedulaCliente">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Documento </th>
+          <td mat-cell *matCellDef="let element">
+            <span class="font-mono text-slate-500 bg-slate-100 px-2 py-1 rounded">
+              {{element.cedulaCliente}}
+            </span>
+          </td>
+        </ng-container>
+
+        <!-- Comercial -->
+        <ng-container matColumnDef="comercialNombre">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Sucursal / Asesor </th>
+          <td mat-cell *matCellDef="let element"> 
+            <span class="flex items-center gap-1 text-slate-600">
+              <mat-icon class="scale-75 text-brand-500">storefront</mat-icon>
+              {{element.comercialNombre}}
+            </span>
+          </td>
+        </ng-container>
+
+        <!-- Valor -->
+        <ng-container matColumnDef="valorCredito">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Monto </th>
+          <td mat-cell *matCellDef="let element">
+            <span class="text-slate-800 font-bold text-base"> {{element.valorCredito | currency}} </span>
+          </td>
+        </ng-container>
+
+        <!-- Tasa -->
+        <ng-container matColumnDef="tasaInteres">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Tasa </th>
+          <td mat-cell *matCellDef="let element">
+            <span class="badge-blue">
+              {{element.tasaInteres / 100 | percent:'1.2-2'}}
+            </span>
+          </td>
+        </ng-container>
+
+        <!-- Plazo -->
+        <ng-container matColumnDef="plazoMeses">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Plazo </th>
+          <td mat-cell *matCellDef="let element">
+            <span class="badge-green">
+              {{element.plazoMeses}} meses
+            </span>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;" class="hover:bg-slate-50 cursor-default transition-colors"></tr>
+        
+        <!-- Fila cuando no hay datos -->
+        <tr class="mat-row" *matNoDataRow>
+          <td class="mat-cell p-12 text-center text-slate-500" colspan="7">
+            <div class="flex flex-col items-center justify-center">
+              <mat-icon class="text-slate-300 text-6xl mb-4" style="height: 60px; width: 60px;">search_off</mat-icon>
+              <h3 class="text-lg font-bold text-slate-700">No se encontraron resultados</h3>
+              <p>Intenta con otros términos de búsqueda.</p>
+            </div>
+          </td>
+        </tr>
+      </table>
+    </div>
+
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Seleccionar página" class="border-t border-slate-200 bg-slate-50"></mat-paginator>
+  </div>
+</div>

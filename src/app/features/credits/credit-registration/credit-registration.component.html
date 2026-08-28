@@ -1,0 +1,107 @@
+<div class="container mx-auto max-w-4xl">
+  
+  <div class="mb-8 flex items-center gap-4">
+    <div class="h-16 w-16 bg-white text-brand-600 rounded-2xl flex items-center justify-center shadow-sm border border-slate-200">
+      <mat-icon class="scale-150">post_add</mat-icon>
+    </div>
+    <div>
+      <h1 class="text-3xl font-extrabold text-slate-800 tracking-tight">Radicar Crédito</h1>
+      <p class="text-slate-500 mt-1">Diligencie el formulario para registrar una nueva solicitud en el sistema.</p>
+    </div>
+  </div>
+
+  <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+    <div class="bg-slate-50 px-8 py-4 border-b border-slate-100">
+      <h2 class="text-lg font-bold text-slate-700 flex items-center gap-2">
+        <mat-icon class="text-brand-600 text-base h-4 w-4">info</mat-icon>
+        Información General
+      </h2>
+    </div>
+
+    <form [formGroup]="registroForm" (ngSubmit)="onSubmit()" class="p-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4">
+        
+        <!-- Nombre del cliente -->
+        <mat-form-field appearance="outline" class="w-full">
+          <mat-label>Nombre Completo del Cliente</mat-label>
+          <input matInput type="text" formControlName="nombreCliente" placeholder="Ej. Juan Pérez">
+          <mat-icon matPrefix class="text-slate-400">person</mat-icon>
+          @if (registroForm.get('nombreCliente')?.hasError('required')) {
+            <mat-error>El nombre es requerido</mat-error>
+          }
+        </mat-form-field>
+
+        <!-- Cédula o ID -->
+        <mat-form-field appearance="outline" class="w-full">
+          <mat-label>Documento de Identidad</mat-label>
+          <input matInput type="text" formControlName="cedulaCliente" placeholder="Ej. 123456789">
+          <mat-icon matPrefix class="text-slate-400">badge</mat-icon>
+          @if (registroForm.get('cedulaCliente')?.hasError('required')) {
+            <mat-error>El documento es requerido</mat-error>
+          }
+        </mat-form-field>
+
+        <!-- Comercial que registra -->
+        <mat-form-field appearance="outline" class="w-full md:col-span-2">
+          <mat-label>Sucursal o Asesor Comercial</mat-label>
+          <input matInput type="text" formControlName="comercialNombre" placeholder="Nombre de quien registra">
+          <mat-icon matPrefix class="text-slate-400">storefront</mat-icon>
+          @if (registroForm.get('comercialNombre')?.hasError('required')) {
+            <mat-error>El comercial es requerido</mat-error>
+          }
+        </mat-form-field>
+
+        <div class="md:col-span-2 my-4">
+          <h2 class="text-lg font-bold text-slate-700 flex items-center gap-2 pb-2 border-b border-slate-100">
+            <mat-icon class="text-brand-600 text-base h-4 w-4">monetization_on</mat-icon>
+            Condiciones del Crédito
+          </h2>
+        </div>
+
+        <!-- Valor del crédito -->
+        <mat-form-field appearance="outline" class="w-full">
+          <mat-label>Monto Solicitado ($)</mat-label>
+          <input matInput type="number" formControlName="valorCredito" placeholder="Ej. 5000000">
+          <mat-icon matPrefix class="text-slate-400">attach_money</mat-icon>
+          @if (registroForm.get('valorCredito')?.hasError('required')) {
+            <mat-error>El monto es requerido</mat-error>
+          }
+          @if (registroForm.get('valorCredito')?.hasError('min')) {
+            <mat-error>El monto mínimo es $1,000</mat-error>
+          }
+        </mat-form-field>
+
+        <!-- Tasa de Interés -->
+        <mat-form-field appearance="outline" class="w-full">
+          <mat-label>Tasa de Interés (%)</mat-label>
+          <input matInput type="number" formControlName="tasaInteres" step="0.1" placeholder="Ej. 1.5">
+          <mat-icon matPrefix class="text-slate-400">percent</mat-icon>
+          @if (registroForm.get('tasaInteres')?.hasError('required')) {
+            <mat-error>La tasa es requerida</mat-error>
+          }
+        </mat-form-field>
+
+        <!-- Plazo -->
+        <mat-form-field appearance="outline" class="w-full md:col-span-2">
+          <mat-label>Plazo (Meses)</mat-label>
+          <input matInput type="number" formControlName="plazoMeses" placeholder="Ej. 24">
+          <mat-icon matPrefix class="text-slate-400">calendar_month</mat-icon>
+          @if (registroForm.get('plazoMeses')?.hasError('required')) {
+            <mat-error>El plazo es requerido</mat-error>
+          }
+        </mat-form-field>
+
+      </div>
+
+      <div class="mt-8 pt-6 border-t border-slate-100 flex justify-end gap-4">
+        <button mat-button type="button" routerLink="/consulta" class="px-6 py-6 text-slate-500">
+          Cancelar
+        </button>
+        <button mat-flat-button color="primary" type="submit" [disabled]="registroForm.invalid" class="px-8 py-6 rounded-xl font-bold shadow-md shadow-brand-500/20 text-white">
+          Solicita tu Crédito
+        </button>
+      </div>
+
+    </form>
+  </div>
+</div>

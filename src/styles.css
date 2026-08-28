@@ -1,1 +1,129 @@
-/* You can add global styles to this file, and also import other style files */
+@import "@angular/material/prebuilt-themes/azure-blue.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-surface-light text-gray-900 font-sans antialiased m-0;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-bold text-gray-900 m-0;
+  }
+  p {
+    @apply m-0;
+  }
+  input, button {
+    @apply font-sans;
+  }
+}
+
+/* Redondear botones de Angular Material */
+.mdc-button, .mdc-fab {
+  border-radius: 12px !important;
+}
+
+/* Modificar botones primarios de Material para usar nuestro brand color */
+.mat-mdc-unelevated-button.mat-primary {
+  background-color: #059669 !important; /* brand-600 */
+  color: #ffffff !important;
+  font-weight: 600 !important;
+}
+.mat-mdc-unelevated-button.mat-primary:hover {
+  background-color: #047857 !important; /* brand-700 */
+}
+
+/* Estilizar inputs de Material */
+.mdc-text-field--outlined .mdc-notched-outline {
+  border-radius: 12px !important;
+}
+.mdc-text-field--outlined:not(.mdc-text-field--disabled):not(.mdc-text-field--invalid) .mdc-notched-outline__leading,
+.mdc-text-field--outlined:not(.mdc-text-field--disabled):not(.mdc-text-field--invalid) .mdc-notched-outline__notch,
+.mdc-text-field--outlined:not(.mdc-text-field--disabled):not(.mdc-text-field--invalid) .mdc-notched-outline__trailing {
+  border-color: #cbd5e1 !important; /* slate-300 para borde normal */
+  border-width: 1px !important;
+}
+.mdc-text-field--outlined:not(.mdc-text-field--disabled):not(.mdc-text-field--focused):not(.mdc-text-field--invalid):hover .mdc-notched-outline__leading,
+.mdc-text-field--outlined:not(.mdc-text-field--disabled):not(.mdc-text-field--focused):not(.mdc-text-field--invalid):hover .mdc-notched-outline__notch,
+.mdc-text-field--outlined:not(.mdc-text-field--disabled):not(.mdc-text-field--focused):not(.mdc-text-field--invalid):hover .mdc-notched-outline__trailing {
+  border-color: #94a3b8 !important; /* slate-400 en hover */
+}
+.mdc-text-field--outlined.mdc-text-field--focused:not(.mdc-text-field--invalid) .mdc-notched-outline__leading,
+.mdc-text-field--outlined.mdc-text-field--focused:not(.mdc-text-field--invalid) .mdc-notched-outline__notch,
+.mdc-text-field--outlined.mdc-text-field--focused:not(.mdc-text-field--invalid) .mdc-notched-outline__trailing {
+  border-color: #10b981 !important; /* brand-500 en focus */
+  border-width: 2px !important;
+}
+.mdc-text-field--focused:not(.mdc-text-field--disabled) .mdc-floating-label {
+  color: #10b981 !important; /* brand-500 */
+}
+
+/* Iconos de input por defecto */
+.mat-mdc-form-field-icon-prefix > .mat-icon,
+.mat-mdc-form-field-icon-suffix > .mat-icon {
+  color: #94a3b8 !important; /* slate-400 */
+}
+.mdc-text-field--focused .mat-mdc-form-field-icon-prefix > .mat-icon,
+.mdc-text-field--focused .mat-mdc-form-field-icon-suffix > .mat-icon {
+  color: #10b981 !important; /* brand-500 */
+}
+
+/* Custom Table Styles */
+.custom-table-container {
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  background: white;
+}
+
+.mat-mdc-table {
+  background: transparent !important;
+}
+
+.mat-mdc-header-row {
+  background: #f8fafc !important; /* slate-50 */
+}
+
+.mat-mdc-header-cell {
+  color: #475569 !important; /* slate-600 */
+  font-weight: 600 !important;
+  font-size: 0.875rem !important;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-bottom: 2px solid #e2e8f0 !important;
+}
+
+.mat-mdc-row:hover {
+  background-color: #f1f5f9 !important; /* slate-100 */
+}
+
+.mat-mdc-cell {
+  color: #334155 !important; /* slate-700 */
+  border-bottom: 1px solid #f1f5f9 !important;
+  font-size: 0.875rem !important;
+}
+
+/* Badge classes */
+.badge-blue {
+  background-color: #ecfdf5; /* brand-50 */
+  color: #047857; /* brand-700 */
+  padding: 4px 10px;
+  border-radius: 9999px;
+  font-weight: 600;
+  font-size: 0.75rem;
+}
+
+.badge-green {
+  background-color: #d1fae5; /* brand-100 */
+  color: #065f46; /* brand-800 */
+  padding: 4px 10px;
+  border-radius: 9999px;
+  font-weight: 600;
+  font-size: 0.75rem;
+}
+
+/* SweetAlert customization */
+.swal2-popup {
+  border-radius: 16px !important;
+}
